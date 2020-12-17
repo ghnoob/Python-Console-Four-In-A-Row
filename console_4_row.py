@@ -156,7 +156,7 @@ class FourInRow(Board):
             try:
                 hor.append(self._list[i][row])
             except IndexError:
-                continue
+                hor.append("ph") # placeholder
 
         # main diagonal check
         # upwards
