@@ -162,7 +162,7 @@ class FourInRow(Board):
         # upwards
         diag1 = [self._list[column][row]]
         i, j = column + 1, row + 1
-        while True:
+        while (i < self.columns) and (j < self.columns):
             try:
                 diag1.append(self._list[i][j])
             except IndexError:
@@ -172,7 +172,7 @@ class FourInRow(Board):
                 j += 1
         # downwards
         i, j = column - 1, row - 1
-        while True:
+        while (i >= 0) and (j >= 0):
             try:
                 diag1.insert(0, self._list[i][j])
             except IndexError:
@@ -185,7 +185,7 @@ class FourInRow(Board):
         # upwards
         diag2 = [self._list[column][row]]
         i, j = column - 1, row + 1
-        while True:
+        while (i >= 0) and (j < self.columns):
             try:
                 diag2.append(self._list[i][j])
             except IndexError:
@@ -195,7 +195,7 @@ class FourInRow(Board):
                 j += 1
         # downwards
         i, j = column + 1, row - 1
-        while True:
+        while (i < self.columns) and (j >= 0):
             try:
                 diag2.insert(0, self._list[i][j])
             except IndexError:
