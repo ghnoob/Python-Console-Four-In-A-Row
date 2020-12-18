@@ -131,15 +131,15 @@ class FourInRow(Board):
                 else:
                     incorrect_input = False
 
-            if self.__check_for_winner(self.__players[0], col, len(self._list[col])-1):
-                return self.__declare_winner(self.__players[0])
+            if self.check_for_winner(self.__players[0], col, len(self._list[col])-1):
+                return self.declare_winner(self.__players[0])
             
-            if self.__check_for_tie():
-                return self.__declare_tie()
+            if self.check_for_tie():
+                return self.declare_tie()
             
             self.__players.reverse()
 
-    def __check_for_winner(self, player:Player, column:int, row:int) -> bool:
+    def check_for_winner(self, player:Player, column:int, row:int) -> bool:
         """Retuns True if the current player has met victory conditions.
         
         The method searchs for four consecutive symbols of the same type
@@ -205,11 +205,11 @@ class FourInRow(Board):
                 j -= 1  
 
         for direction in [vert, hor, diag1, diag2]:
-            if self.__are_4_in_a_row(direction, check_for):
+            if self.are_4_in_a_row(direction, check_for):
                 return True
         return False
 
-    def __are_4_in_a_row(self, search_in:list, search_for:list) -> bool:
+    def are_4_in_a_row(self, search_in:list, search_for:list) -> bool:
         """Returns True if there are four symbols of the same player in the given direction."""
         for i in range(len(search_in)):
             try:
@@ -219,7 +219,7 @@ class FourInRow(Board):
                 return False
         return False
     
-    def __check_for_tie(self) -> bool:
+    def check_for_tie(self) -> bool:
         """Returns true if the board is full.
         
         Meant to be executed after self.check_for_winner returns False.
@@ -230,23 +230,23 @@ class FourInRow(Board):
                 return False
         return True
 
-    def __declare_winner(self, winner:Player) -> None:
+    def declare_winner(self, winner:Player) -> None:
         """Prints a message showing the winner of the round and add a point to them."""
         print(f"\n{winner.name} won!")
         print(self)
         winner.score += 1
         self.show_scores()
-        return self.__ask_for_rematch()
+        return self.ask_for_rematch()
 
-    def __declare_tie(self) -> None:
+    def declare_tie(self) -> None:
         """Prints a message declaring a tie and adds a point to the tie score."""
         print("\nMatch tied.")
         print(self)
         self.tie_score += 1
         self.show_scores()
-        return self.__ask_for_rematch()
+        return self.ask_for_rematch()
 
-    def __ask_for_rematch(self) -> None:
+    def ask_for_rematch(self) -> None:
         """Asks the players if they want to play another match.
         
         Entering 'y' will result in calling the method to play another round.
