@@ -233,6 +233,7 @@ class FourInRow(Board):
     def __declare_winner(self, winner:Player) -> None:
         """Prints a message showing the winner of the round and add a point to them."""
         print(f"\n{winner.name} won!")
+        print(self)
         winner.score += 1
         self.show_scores()
         return self.__ask_for_rematch()
@@ -240,6 +241,7 @@ class FourInRow(Board):
     def __declare_tie(self) -> None:
         """Prints a message declaring a tie and adds a point to the tie score."""
         print("\nMatch tied.")
+        print(self)
         self.tie_score += 1
         self.show_scores()
         return self.__ask_for_rematch()
